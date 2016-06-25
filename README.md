@@ -27,9 +27,9 @@ module.exports = {
 		version1: "2",
 		version2: "10",
 	},
-	framework: {
-		version1: "nodejs",
-		version2: "golang",
+	speed: {
+		version1: "200",
+		version2: "10",
 	},
 };
 ```

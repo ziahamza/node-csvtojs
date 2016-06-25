@@ -1,6 +1,6 @@
 {
   "name": "csvtojs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Convert CSV data to CommonJS module",
   "main": "index.js",
   "scripts": {
