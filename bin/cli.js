@@ -26,12 +26,13 @@ if (argv.help) {
 }
 
 var csvPath = argv._[0];
-if (csvPath[0] !== '.' && csvPath[0] !== '/') {
-	csvPath = './' + csvPath;
-}
 if (!csvPath || !csvPath.length) {
 	console.log('Passing the path to the CSV file is required. Like: csvtojs ./data/example.csv');
 	process.exit(1);
+}
+
+if (csvPath[0] !== '.' && csvPath[0] !== '/') {
+	csvPath = './' + csvPath;
 }
 
 var outPath = argv.out || '$0/$1.js';
