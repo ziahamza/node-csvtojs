@@ -34,4 +34,19 @@ module.exports = {
 };
 ```
 
+## Flags
+### -o, --out
+Specify the output JS file. Can use `$0` and `$1` to refer to the csv directory & csv file name without extension. Example:
+```
+jstocsv --out src/data/$1.js sample.csv
+```
+will create JS file `src/data/sample.js`.
+
+### -tb, --tabspace
+By default `csvtojs` will output pretty JS with indentation through tabs. This flags lets you specify number of spaces instead of tabs to indent the JS file. Example:
+```
+jstocsv --tabspace 2 sample.csv
+```
+Will generate `sample.js` with 2 spaces used for indentation
+
 

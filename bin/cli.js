@@ -18,6 +18,12 @@ var argv = optimist.usage([
 		'$0 will be replaced the path of the dir containing CSV.',
 		'$1 will be the name of CSV file without extension.',
 	].join('\n')
+})
+.option('tabspace', {
+	alias: 'tb',
+	description: [
+		'Use spaces instead of tabs. Takes in number of spaces to replace a tab.'
+	].join('\n'),
 }).argv;
 
 if (argv.help) {
@@ -35,13 +41,26 @@ if (csvPath[0] !== '.' && csvPath[0] !== '/') {
 	csvPath = './' + csvPath;
 }
 
+function getSpaces(num) {
+	var txt = '';
+	for (var i = 0; i < num; i++) {
+		txt += ' ';
+	}
+
+	return txt;
+}
+
 var outPath = argv.out || '$0/$1.js';
 var csvPathParsed = path.parse(csvPath);
 
 outPath = outPath.replace('$0', csvPathParsed.dir);
 outPath = outPath.replace('$1', csvPathParsed.name);
 
-CSVToJS(csvPath, outPath, function(err) {
+var tab = argv.tabspace ? getSpaces(+argv.tabspace) : '\t';
+
+CSVToJS(csvPath, outPath, {
+	tab: tab,
+}, function(err) {
 	if (err) {
 		console.log(err.toString());
 		process.exit(1);
